@@ -28,7 +28,7 @@
  **/
 
 //function to get retrieve the autocompletes first result using the AutocompleteService 
-var getPlace = function(result) {
+var getPlace = function(result, scope, element) {
   var autocompleteService = new google.maps.places.AutocompleteService();
   if (result.name.length > 0){
     autocompleteService.getPlacePredictions(
@@ -73,7 +73,7 @@ var getPlace = function(result) {
 }
 
 //convert options provided to opts
-var initOpts = function() {
+var initOpts = function(scope) {
   var opts = {}
   if (scope.options) {
 
@@ -132,7 +132,7 @@ var linkFn = function(scope, element, attrs, controller) {
         }
         else {
           if (watchEnter) {
-            getPlace(result)
+            getPlace(result, scope, element);
           }
         }
       }
@@ -149,7 +149,7 @@ var linkFn = function(scope, element, attrs, controller) {
     return scope.options
   };
   scope.$watch(scope.watchOptions, function () {
-    initOpts()
+    initOpts(scope)
   }, true);
 }
 
