@@ -74,7 +74,7 @@ var getPlace = function(result) {
 
 //convert options provided to opts
 var initOpts = function() {
-  opts = {}
+  var opts = {}
   if (scope.options) {
 
     if (scope.options.watchEnter !== true) {
@@ -111,7 +111,6 @@ var initOpts = function() {
 
 var linkFn = function(scope, element, attrs, controller) {
   //options for autocomplete
-  var opts
   var watchEnter = false
 
   window.setTimeout(function () {
