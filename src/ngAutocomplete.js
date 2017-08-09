@@ -152,7 +152,7 @@ var linkFn = function(scope, element, attrs, controller) {
       initOpts(scope)
     }, true);
 
-  }, 5000);
+  }, 2000);
   // end of setTimeout
 
 }
