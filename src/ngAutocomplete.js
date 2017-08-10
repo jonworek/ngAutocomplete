@@ -151,21 +151,25 @@ var linkFn = function(scope, element, attrs, controller) {
   }, true);
 }
 
+var TIMEOUT = 5000;        // 5s, 5000ms
+var POLL_INTERVAL = 200;   // 200ms
+var RETRIES = TIMEOUT / POLL_INTERVAL;   
+
 var waitForGoogle = function(scope, element, attrs, controller, tries) {
   if (tries === undefined || tries === null) {
     tries = 1;
   }
 
-  if (tries >= 25) throw "Timed out waiting for google api";
+  if (tries >= RETRIES) throw "ngAutocomplete: timed out waiting for google api";
 
   if (window.google) {
-    console.log("google is available");
+    console.log("ngAutocomplete: google is available");
     linkFn(scope, element, attrs, controller);
   } else {
-    console.log("google is NOT available.  Waiting.");
+    console.log("ngAutocomplete: google is NOT available.  Waiting.");
     setTimeout(function() {
       waitForGoogle(scope, element, attrs, controller, tries + 1)
-    }, 200);
+    }, POLL_INTERVAL);
   }
 };
 
