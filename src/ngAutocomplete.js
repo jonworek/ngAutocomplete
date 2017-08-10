@@ -159,8 +159,10 @@ var waitForGoogle = function(scope, element, attrs, controller, tries) {
   if (tries >= 25) throw "Timed out waiting for google api";
 
   if (window.google) {
+    console.log("google is available");
     linkFn(scope, element, attrs, controller);
   } else {
+    console.log("google is NOT available.  Waiting.");
     setTimeout(function() {
       waitForGoogle(scope, element, attrs, controller, tries + 1)
     }, 200);
