@@ -8,6 +8,16 @@ Tested with angularjs-1.2.4
 
 Uses optional directive parameters, so it won't work with <1.2. If people are interested I'll release a <1.2 version.
 
+## Why was this forked?
+
+The original version of this nice directive wouldn't work in my app, where I was loading the Google Maps API via the 
+`angular-google-maps` project.  I further complicated things when I set it all up with webpack.  I found that `window.google`,
+which is provided by the Google Maps API, wasn't available when this directive's `link()` function was getting executed,
+which caused the directive not to work properly.
+
+So, to solve these issues for my situation, I decided to poll for `window.google` to be available, signifying that the API
+had been loaded.  Now, with polling in place, this directive works perfectly.
+
 ## Examples
 
 + [Example Plunkers - Simple Usage](http://plnkr.co/edit/GE34ojss9xMGm0024FvM?p=preview)
